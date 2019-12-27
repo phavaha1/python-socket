@@ -10,14 +10,14 @@ except socket.error:
 
 port = 12345
 
-s.bind('', port)
+s.bind(('', port))
 
 s.listen(5)
 print('socket is listening')
 
 while True:
     c, addr = s.accept()
-    print('got connection from {addr}')
+    print('got connection from {}'.format(addr))
 
-    c.send('Thank for connection')
+    c.send('Thank for connection'.encode())
     c.close()
