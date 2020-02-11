@@ -7,7 +7,7 @@ import thread
 def on_new_client(clientsocket, addr):
     msg = 'hi new connection {}'.format(addr)
     clientsocket.send(msg)
-    clientsocket.close()
+    # clientsocket.close()
 
 
 try:
