@@ -1,5 +1,14 @@
 import socket
 import sys
+from threading import Thread
+import thread
+
+
+def on_new_client(clientsocket, addr):
+    msg = 'hi new connection {}'.format(addr)
+    clientsocket.send(msg)
+    clientsocket.close()
+
 
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,6 +27,4 @@ print('socket is listening')
 while True:
     c, addr = s.accept()
     print('got connection from {}'.format(addr))
-
-    c.send('Thank for connection'.encode())
-    c.close()
+    thread.start_new_thread(on_new_client, (c, addr))
